@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor Binario</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="/img/cerebro.png" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <div class="foto"><img src="/img/codigo-binario.png" alt=""></div>
+        <div class="texto"><h1>¿CONVERSOR BINARIO?</h1></div>    
+        <div class="binario"><img src="/img/clicker-del-mouse.png" alt=""></div>
+    </header>
+    
+    <main>
+        <div class="cristal">
+            <div class="decimal"><h2>¡INTRODUCE UN NUMERITO DECIMAL!</h2></div>
+            <input class="numero" type="text" placeholder="tu numero mierda, ¡aquí!" />
+             
+        <div class="resultado"></div>
+    </main>
+
+    <footer>
+        <p>POR MOTIVOS PERSONALES,  ESTA WEB DEBE SER FEA</p>
+    </footer>
+    
+    <script>
+    const input = document.querySelector(".numero");
+    const resultadoDiv = document.querySelector(".resultado");
+
+    input.addEventListener("input", () => {
+        const valor = input.value;
+        if (valor && !isNaN(valor)) {
+            fetch(`/convertir?numero=${valor}`)
+                .then(res => res.text())
+                .then(binario => {
+                    resultadoDiv.textContent = `${binario}`;
+                });
+        } else {
+            resultadoDiv.textContent = "";
+        }
+    });
+</script>
+    
+</body>
+</html>
